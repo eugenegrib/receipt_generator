@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Cards {
     public static List<Card> getCards() {
-        // Create an Empty List of Student, And add few objects to the List
         List<Card> cards = new ArrayList<>();
         cards.add(new Card(1111, 10));
         cards.add(new Card(1112, 15));

@@ -4,13 +4,10 @@ import static org.example.model.cards.Cards.getCards;
 
 public class Card {
     private int id;
-
+    private int promotional;
     public int getPromotional() {
         return promotional;
     }
-
-    private int promotional;
-
     public int getId() {
         return id;
     }

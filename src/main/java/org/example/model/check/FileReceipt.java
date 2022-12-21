@@ -1,28 +1,20 @@
 package org.example.model.check;
 
-import org.example.model.cards.Card;
+import org.example.model.check.factory.ReceiptInterface;
 import org.example.model.products.Product;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class FileCheck extends Check {
+public class FileReceipt extends Receipt implements ReceiptInterface {
 
-    List<Product> productList;
-    int cardNumber;
+    private List<Product> productList;
+    private int cardNumber;
 
-    public FileCheck(List<Product> productList, int card) {
+    public FileReceipt(List<Product> productList, int card) {
         this.productList = productList;
         this.cardNumber = card;
     }
@@ -33,6 +25,7 @@ public class FileCheck extends Check {
     @Override
     public void printCheck() {
         try (FileWriter fileWriter = new FileWriter("src/main/java/org/example/Check" + LocalDateTime.now().format(DateTimeFormatter.ofPattern(" dd.MM.yyyy hh-mm-ss")) + ".txt")) {
+            fileWriter.write("\n");
             fileWriter.write(" -----------------------------------------------------");
             fileWriter.write("\n");
             fileWriter.write(String.format("%7s %18s %13s %13s", "QTY", "DESCRIPTION", "PRICE", "TOTAL"));
@@ -52,9 +45,10 @@ public class FileCheck extends Check {
             }
             fileWriter.write(" -----------------------------------------------------");
             fileWriter.write("\n");
-            fileWriter.write("  "+printStringWithNumberCardForCheck(cardNumber));
+            fileWriter.write("  "+ printStringWithNumberCardForCheck(cardNumber));
             fileWriter.write("\n");
             fileWriter.write(String.format("%7s %46s", "TOTAL", String.format("%.2f", getTotalPrice(productList, cardNumber))));
+            fileWriter.write("\n");
             fileWriter.write("\n");
 
         } catch (IOException e) {

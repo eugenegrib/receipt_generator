@@ -1,12 +1,11 @@
 package org.example;
 
-import org.example.model.ReadArguments;
-import org.example.model.check.ConsoleCheck;
-import org.example.model.check.FileCheck;
+import org.example.model.check.factory.ReceiptFactory;
+import org.example.model.check.factory.ReceiptInterface;
+import org.example.model.check.factory.ReceiptType;
 import org.example.model.products.Product;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static org.example.model.ReadArguments.*;
 import static org.example.model.products.Products.getProducts;
@@ -20,12 +19,14 @@ public class Main {
         //преобразуем аргументы в список продуктов
         List<Product> list = fromArgumentsToListProducts(listWithoutNumberCard, getProducts());
 
-        //печатаем чек в консоль
-        ConsoleCheck consoleCheck = new ConsoleCheck(list, cardNumber);
+
+        ReceiptFactory factory = new ReceiptFactory();
+
+        ReceiptInterface consoleCheck = factory.getCheck(ReceiptType.CONSOLE, list, cardNumber);
         consoleCheck.printCheck();
 
-        //печатаем чек в файл
-        FileCheck fileCheck = new FileCheck(list, cardNumber);
+        ReceiptInterface fileCheck = factory.getCheck(ReceiptType.FILE, list, cardNumber);
         fileCheck.printCheck();
+
     }
 }

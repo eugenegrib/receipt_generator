@@ -1,14 +1,14 @@
 package org.example.model.products;
 
-
-
-
 public class Product {
     private int quantity;
     private int id;
     private String description;
     private double price;
     private boolean promotional;
+    private double totalWithPromotional;
+    private double totalWithoutPromotional;
+
 
     public double getTotalWithPromotional() {
         return totalWithPromotional;
@@ -17,9 +17,6 @@ public class Product {
     public void setTotalWithPromotional(double totalWithPromotional) {
         this.totalWithPromotional = totalWithPromotional;
     }
-
-    private double totalWithPromotional;
-    private double totalWithoutPromotional;
 
     public double getTotalWithoutPromotional() {
         return totalWithoutPromotional;

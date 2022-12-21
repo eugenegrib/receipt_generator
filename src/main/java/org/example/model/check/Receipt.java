@@ -7,8 +7,7 @@ import java.util.List;
 
 import static org.example.model.cards.Card.getCard;
 
-public abstract class Check {
-    abstract public void printCheck();
+public class Receipt {
 
     /**
      * Печатает в чек строку с размером скидки по карте или информацию о том, что такой карты нет

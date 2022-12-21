@@ -1,17 +1,15 @@
 package org.example.model.check;
 
-import org.example.model.cards.Card;
+import org.example.model.check.factory.ReceiptInterface;
 import org.example.model.products.Product;
 
 import java.util.List;
 
-import static org.example.model.cards.Card.getCard;
+public class ConsoleReceipt extends Receipt implements ReceiptInterface {
+    private List<Product> productList;
+    private int cardNumber;
 
-public class ConsoleCheck extends Check {
-    List<Product> productList;
-    int cardNumber;
-
-    public ConsoleCheck(List<Product> productList, int card) {
+    public ConsoleReceipt(List<Product> productList, int card) {
         this.productList = productList;
         this.cardNumber = card;
     }
@@ -21,6 +19,7 @@ public class ConsoleCheck extends Check {
      */
     @Override
     public void printCheck() {
+        System.out.println();
         System.out.println(" -----------------------------------------------------");
         System.out.printf("%7s %18s %13s %13s", "QTY", "DESCRIPTION", "PRICE", "TOTAL");
         System.out.println();
@@ -40,6 +39,7 @@ public class ConsoleCheck extends Check {
         System.out.println(" -----------------------------------------------------");
         System.out.println("  "+printStringWithNumberCardForCheck(cardNumber));
         System.out.printf("%7s %46s", "TOTAL", String.format("%.2f", getTotalPrice(productList, cardNumber)));
+        System.out.println();
         System.out.println();
     }
 }

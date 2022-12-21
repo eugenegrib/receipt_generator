@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Products {
      public static List<Product> getProducts() {
-        // Create an Empty List of Student, And add few objects to the List
         List<Product> products = new ArrayList<>();
 
         products.add(new Product(1, "Tomato Juice", 65.7, true));
