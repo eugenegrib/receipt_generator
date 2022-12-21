@@ -1,15 +1,14 @@
 package org.example.model.check;
 
-import org.example.model.check.factory.ReceiptInterface;
+import org.example.model.check.factory.Receipt;
 import org.example.model.products.Product;
 
 import java.util.List;
 
-public class ConsoleReceipt extends Receipt implements ReceiptInterface {
-    private List<Product> productList;
-    private int cardNumber;
+public class ConsoleReceipt extends Receipt {
 
     public ConsoleReceipt(List<Product> productList, int card) {
+        super(productList, card);
         this.productList = productList;
         this.cardNumber = card;
     }
@@ -38,7 +37,7 @@ public class ConsoleReceipt extends Receipt implements ReceiptInterface {
 
         System.out.println(" -----------------------------------------------------");
         System.out.println("  "+printStringWithNumberCardForCheck(cardNumber));
-        System.out.printf("%7s %46s", "TOTAL", String.format("%.2f", getTotalPrice(productList, cardNumber)));
+        System.out.printf("%7s %46s", "TOTAL", String.format("%.2f", total));
         System.out.println();
         System.out.println();
     }

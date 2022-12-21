@@ -9,7 +9,6 @@ public class Product {
     private double totalWithPromotional;
     private double totalWithoutPromotional;
 
-
     public double getTotalWithPromotional() {
         return totalWithPromotional;
     }

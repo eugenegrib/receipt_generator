@@ -1,6 +1,6 @@
 package org.example.model.check;
 
-import org.example.model.check.factory.ReceiptInterface;
+import org.example.model.check.factory.Receipt;
 import org.example.model.products.Product;
 
 import java.io.FileWriter;
@@ -9,12 +9,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class FileReceipt extends Receipt implements ReceiptInterface {
-
-    private List<Product> productList;
-    private int cardNumber;
+public class FileReceipt extends Receipt  {
 
     public FileReceipt(List<Product> productList, int card) {
+        super(productList, card);
         this.productList = productList;
         this.cardNumber = card;
     }
@@ -47,7 +45,7 @@ public class FileReceipt extends Receipt implements ReceiptInterface {
             fileWriter.write("\n");
             fileWriter.write("  "+ printStringWithNumberCardForCheck(cardNumber));
             fileWriter.write("\n");
-            fileWriter.write(String.format("%7s %46s", "TOTAL", String.format("%.2f", getTotalPrice(productList, cardNumber))));
+            fileWriter.write(String.format("%7s %46s", "TOTAL", String.format("%.2f", total)));
             fileWriter.write("\n");
             fileWriter.write("\n");
 
